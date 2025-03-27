@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FeChat</title>
+  <style>
+    /* Глобальные стили */
+    * { box-sizing: border-box; }
+    body, html {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+      background: #f0f0f0;
+    }
+    /* Контейнер слайдера */
+    .slider {
+      display: flex;
+      transition: transform 0.5s ease;
+      width: 500vw; /* 5 слайдов по 100vw */
+    }
+
+    /* Каждый слайд */
+    .slide {
+      width: 100vw;
+      height: 100vh;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+      background: #fff;
+    }
+    /* Контейнер для SVG-иконок */
+    .icon-container {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 20px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    /* Кнопки навигации */
+    .nav-btn {
+      position: absolute;
+      bottom: 40px;
+      background: #4CAF50;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+      z-index: 10;
+    }
+    .nav-btn:hover {
+      background: #45a049;
+    }
+    /* Только кнопка «next», кнопка «prev» удалена */
+    .next {
+      right: 20px;
+    }
+    /* Стили для финальной кнопки */
+    .final-btn {
+      background: #2196F3;
+      border: none;
+      padding: 15px 30px;
+      border-radius: 5px;
+      color: #fff;
+      font-size: 18px;
+      cursor: pointer;
+      transition: background 0.3s;
+      margin-top: 20px;
+    }
+    .final-btn:hover {
+      background: #1976D2;
+    }
+  </style>
+</head>
+<body>
+<div class="slider" id="slider">
+  <!-- Слайд 0: Приветствие -->
+  <div class="slide">
+    <div class="icon-container">
+      <!-- SVG-иконка (например, логотип) -->
+    </div>
+    <h1>Добро пожаловать в FeChat</h1>
+    <p>Начните знакомство с возможностями приложения</p>
+  </div>
+  <!-- Слайд 1: Бесплатный -->
+  <div class="slide">
+    <div class="icon-container">
+      <img style="width: 100%;" src="svg/credit_card_off_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg" alt="">
+    </div>
+    <h1>Бесплатный</h1>
+    <p>Полный функционал без дополнительных затрат</p>
+  </div>
+  <!-- Слайд 2: Открытый -->
+  <div class="slide">
+    <div class="icon-container">
+      <!-- SVG-иконка для "Открытый" -->
+    </div>
+    <h1>Открытый</h1>
+    <p>Исходный код доступен и развивается сообществом</p>
+  </div>
+  <!-- Слайд 3: Кастомизируемый -->
+  <div class="slide">
+    <div class="icon-container">
+      <!-- SVG-иконка для "Кастомизируемый" -->
+    </div>
+    <h1>Кастомизируемый</h1>
+    <p>Настройте интерфейс и функционал под себя</p>
+  </div>
+  <!-- Слайд 4: Безопасный и переход -->
+  <div class="slide">
+    <div class="icon-container">
+      <!-- SVG-иконка для "Безопасный" -->
+    </div>
+    <h1>Безопасный</h1>
+    <p>Ваши данные защищены современными технологиями</p>
+    <button class="final-btn" onclick="configureClient()">Настроить клиент</button>
+  </div>
+</div>
+
+<!-- Кнопка для перехода к следующему слайду -->
+<button class="nav-btn next" onclick="nextSlide()">&#10095;</button>
+
+<script>
+  let currentSlide = 0;
+  const slider = document.getElementById('slider');
+  const totalSlides = slider.children.length;
+
+  function updateSlider() {
+    slider.style.transform = 'translate3d(' + (-currentSlide * 100) + 'vw, 0, 0)';
+  }
+
+  function nextSlide() {
+    if (currentSlide < totalSlides - 1) {
+      currentSlide++;
+      updateSlider();
+    }
+  }
+
+  // Эта функция будет привязана к нативному C++-обработчику через Ultralight.
+  function configureClient() {
+    console.log("Вызов configureClient() из JS");
+    // В момент вызова, если настроена привязка в C++, функция будет выполнена на C++ стороне.
+  }
+</script>
+</body>
+</html>
