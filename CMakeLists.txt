@@ -7,9 +7,6 @@ project(${APP_NAME})
 set(CMAKE_CXX_STANDARD 20)
 
 
-find_package(glfw3 REQUIRED)
-find_package(OpenGL REQUIRED)
-find_package(glad REQUIRED)
 find_package(nlohmann_json CONFIG REQUIRED)
 
 
@@ -37,9 +34,6 @@ add_executable(${APP_NAME} WIN32 MACOSX_BUNDLE "src/main.cpp"
 )
 
 target_link_libraries(${APP_NAME} PRIVATE
-        glfw
-        OpenGL::GL
-        glad::glad
         nlohmann_json::nlohmann_json
 )
 
